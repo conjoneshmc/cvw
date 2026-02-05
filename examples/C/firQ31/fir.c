@@ -1,6 +1,7 @@
 #include <stdio.h>  // supports printf
-#include "util.h"   // supports verify
-extern void fir(int x[], int c[], int y[], int n, int m);
+#include "util.h"   // supports verify\
+
+// extern void fir(int x[], int c[], int y[], int n, int m);
 
 // Add two Q1.31 fixed point numbers
 int add_q31(int a, int b) {
@@ -17,20 +18,20 @@ int mul_q31(int a, int b) {
 // low pass filter x with coefficients c, result in y
 // n is the length of x, m is the length of c
 // inputs in Q1.31 format
-// void fir(int x[], int c[], int y[], int n, int m) {
-//  for (int j = 0; j <= n - m + 1; j++) {
-//     int res = 0;
+void fir(int x[], int c[], int y[], int n, int m) {
+ for (int j = 0; j <= n - m + 1; j++) {
+    int res = 0;
 
-//     for (int i = 0; i <= m - 1; i++) {
-//       res = add_q31(
-//         res,
-//         mul_q31(c[i], x[j - i + m - 1])
-//       );
-//     }
+    for (int i = 0; i <= m - 1; i++) {
+      res = add_q31(
+        res,
+        mul_q31(c[i], x[j - i + m - 1])
+      );
+    }
 
-//     y[j] = res;
-//   }
-// }
+    y[j] = res;
+  }
+}
 
 int main(void) {
   int32_t sin_table[20] = { // in Q1.31 format
