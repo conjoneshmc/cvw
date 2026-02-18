@@ -7,26 +7,27 @@
 .extern or_test
 .extern and_test
 .extern sub_test
+.extern sll_test
+.extern srl_test
+.extern sra_test
+.extern sltu_test
+.extern lui_test
 
-    .section .text.init
-    .globl main
-    .globl return_add_test
-    .globl return_or_test
-    .globl return_and_test
-    .globl return_sub_test
-    .type  main, @function
+.section .text.init
+.globl main
+.globl return_add_test
+.globl return_or_test
+.globl return_and_test
+.globl return_sub_test
+.globl return_sll_test
+.globl return_srl_test
+.globl return_sra_test
+.globl return_sltu_test
+.globl return_lui_test
+.type  main, @function
 
 main:
-    j add_test
+    li t0, 2
 
-return_add_test:
-    j or_test
-
-return_or_test:
-    j and_test
-
-return_and_test:
-    j sub_test
-
-return_sub_test:
+return_lui_test:
     j pass
